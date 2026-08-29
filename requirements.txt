@@ -1,6 +1,6 @@
-mcp[cli]
-httpx
-pydantic
-python-dotenv
-
-
+# mcp 2.x renamed FastMCP to MCPServer and changed the tool-registration API.
+# This server targets the v1 SDK, so the major version is pinned deliberately.
+mcp[cli]>=1.2,<2
+httpx>=0.27
+pydantic>=2.7
+python-dotenv>=1.0

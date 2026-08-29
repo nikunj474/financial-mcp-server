@@ -2,6 +2,7 @@
 
 > A [Model Context Protocol](https://modelcontextprotocol.io) server that gives any MCP-compatible AI client — Claude, GPT, Gemini — live access to SEC filings, Federal Reserve economic data, and stock market fundamentals.
 
+[![CI](https://github.com/nikunj474/financial-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/nikunj474/financial-mcp-server/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![MCP Protocol](https://img.shields.io/badge/MCP-2025--11--25-green.svg)](https://modelcontextprotocol.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -167,3 +168,21 @@ MIT — use it, fork it, extend it.
 ---
 
 *Built as part of a portfolio project exploring agentic AI infrastructure. Contributions and issues welcome.*
+
+---
+
+## Tests
+
+24 tests, no network access: the HTTP client is stubbed, so the suite pins down
+input validation, CIK zero-padding, SEC archive URL construction, form-type
+filtering, and the error contract (every tool returns a string, never raises,
+because a model cannot catch an exception).
+
+```bash
+pip install -r requirements.txt -r requirements-dev.txt
+pytest -q
+```
+
+CI runs the suite on Python 3.11, 3.12, and 3.13, then imports the server and
+asserts the tool registry still advertises exactly six tools.
+
